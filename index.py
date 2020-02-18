@@ -2,7 +2,7 @@ import csv
 import copy
 data = []
 line = 0
-with open('data/2019_nCoV_20200121_20200131.csv') as csv_file:
+with open('data/2019_nCoV_20200121_20200205.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
 
     for row in csv_reader:
@@ -20,12 +20,12 @@ for row in data:
     converter1 = copy.deepcopy(row)
     
     countryData.append(row[1])
-    converter1[1] = countryData.index(row[1])
+    converter1[1] = countryData.index(row[1])+1
     with open('./output/output1.csv', mode='a+',newline='') as employee_file:
         csv_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         csv_writer.writerow(converter1)    
     with open('./output/output2.csv', mode='a+',newline='') as employee_file:
         csv_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-        csv_writer.writerow([countryData.index(row[1]), row[1]])
+        csv_writer.writerow([countryData.index(row[1])+1, row[1]])
 
 
